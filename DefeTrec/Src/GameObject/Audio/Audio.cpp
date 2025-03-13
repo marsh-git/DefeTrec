@@ -1,7 +1,6 @@
 #include "Audio.h"
 
 
-
 /*
  *  @brief		コンストラクタ
  *	@param[in]	int _soundHandle	音ハンドル

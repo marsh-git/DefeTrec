@@ -31,7 +31,6 @@ void GameScene::Start() {
 	// キャラクターマネージャーの初期化
 	CharacterManager* charMng = CharacterManager::GetInstance();
 
-	floorMng->NextFloor(0.15, 0.8, 0.05);
 	// プレイヤーの初期化 X,Y,hp,攻撃力, 表示
 	player = new Player(7 * TILE_SIZE, 7 * TILE_SIZE, 3, 1);
 	pGameObjectArray.push_back(player);
@@ -43,10 +42,6 @@ void GameScene::Update() {
 		FadeManager::GetInstance()->FadeIn();
 		SceneManager::GetInstance()->SetNext(SceneType::Result);
 	}
-	//配列の要素をすべて更新
-	//for (int i = 0; i < pGameObjectArray.size(); i++) {
-	//	pGameObjectArray[i]->Update();
-	//}
 
 	//範囲for文	配列やコンテナの要素全てを繰り返す
 	//for(1つの型 別名：配列、コンテナ){ 処理 }

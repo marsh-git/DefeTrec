@@ -4,7 +4,6 @@
 /*
  *	@brief　音源オブジェクト
  */
-
 class Audio : public GameObject {
 private:	//メンバ変数
 	bool isLoop;			//ループするかどうか
@@ -47,7 +46,6 @@ public:		//オーバーライドしたメンバ関数
 public:		//メンバ関数
 
 public:		//GetterとSetter
-
 	/*
 	 *	@function	GetSoundHandle
 	 *  @brief		音ハンドルの取得

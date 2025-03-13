@@ -7,7 +7,7 @@
 #include "EnemySpawner.h"
 #include <DxLib.h>
 
-
+//A*アルゴリズムを使用するため
 AStar pathfinder;
 
 Slime::Slime(int startX, int startY, int Hp, int startAttackPower)
@@ -29,21 +29,22 @@ void Slime::Start() {
 }
 
 void Slime::Update() {
+	//不可視なら処理を飛ばす
 	if (!isVisible)
 		return;
-
+	//移動時のアニメーション
 	MovingAnim();
+	//アニメーション
 	Anim();
 }
 
+	// 描画
 void Slime::Render() {
 	if (!isVisible)
 		return;
-	// 描画
 	//書き終わった後に気づいたくそコード
 	//if(プレイヤーの位置が左なら)DrawGraph
 	//if(プレイヤーの位置が右なら)DrawTurnGraph	でよかった
-
 	switch (state) {
 	case Character::IDLE_LEFT:
 		DrawGraph(x, y, Slime_png[currentFrame], TRUE);
@@ -72,10 +73,13 @@ void Slime::Render() {
 	default:
 		break;
 	}
-
+#if _DEBUG
+	//デバッグ時に当たり判定の四角が見えるようになっている
 	DrawBox(targetX, targetY, targetX + TILE_SIZE, targetY + TILE_SIZE, white, false);
+#endif
 }
 
+//移動
 void Slime::Move(int _mapData[MAP_HEIGHT][MAP_WIDTH]) {
 	if (!isVisible)
 		return;

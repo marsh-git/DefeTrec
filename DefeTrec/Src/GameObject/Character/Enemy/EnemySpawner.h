@@ -58,11 +58,14 @@ public:		//読み込み
 	CharacterManager* characterManager = CharacterManager::GetInstance();
 
 public:		//メンバ変数
+	//敵の最大数カウント
 	int enemyNum = 0;
 
 public:		//メンバ関数
+	//敵を出現させる関数
 	void SpawnEnemy(int _mapData[MAP_HEIGHT][MAP_WIDTH]);
 
+	//敵を倒した時用の関数
 	void EnemyDefeated();
 
 };
