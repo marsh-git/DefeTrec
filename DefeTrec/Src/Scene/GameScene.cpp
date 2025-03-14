@@ -6,6 +6,7 @@
 #include "../Manager/FadeManager.h"
 #include "../Manager/SceneManager.h"
 #include "../Manager/FloorManager.h"
+#include "../Manager/UIManager.h"
 #include "../Src/GameObject/Character/Enemy/EnemySpawner.h"
 
 GameScene::GameScene() {
@@ -85,12 +86,8 @@ void GameScene::Render() {
 		enemy->Render();
 	}
 
-	// スコアと階数の表示
-	Player* player = CharacterManager::GetInstance()->GetPlayer();
-	if (player != nullptr) {
-		DrawFormatString(970, 50, black, "Score: %d", player->score);
-		DrawFormatString(970, 100, black, "Floor: %d", player->floorCount);
-	}
+	UIManager::GetInstance()->Render();
+
 }
 
 void GameScene::ResetScene() {

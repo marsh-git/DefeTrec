@@ -5,16 +5,56 @@
 //プレイヤーのステータスや状態の描画をするためのクラス
 //UI全般を担当する
 class UIManager {
+#pragma region シングルトンのデータ構造
+private:	//静的メンバ変数
+	static UIManager* pInstance;	//自身のインスタンスのアドレスを格納
+
+
+private:	//コンストラクタとデストラクタ
+	/*
+	 *	@brief	コンストラクタ
+	 *	@tips	外部で生成されないようにアクセス指定子を private にする
+	 */
+	UIManager();
+
+	/*
+	 *	@brief	デストラクタ
+	 */
+	~UIManager();
+
+public:	//コピー、譲渡を禁止
+
+	UIManager(const UIManager&) = delete;
+	UIManager(UIManager&&) = delete;
+	UIManager& operator = (const UIManager&) = delete;
+	UIManager& operator = (UIManager&&) = delete;
+
+private:	//静的メンバ関数
+	/*
+	 *	@function	CreateInstance
+	 *	@brief		自身のインスタンスを生成
+	 *	@return		CharacterManager*
+	 */
+	static void CreateInstance();
+
+public:		//静的メンバ関数
+	/*
+	 *	@function	GetInstance
+	 *	@brief		自身のインスタンスを取得する唯一の手段
+	 *	@return		InputManager*	自身のインスタンスのアドレス
+	 */
+	static UIManager* GetInstance();
+
+	/*
+	 *	@function	DestroyInstance
+	 *	@brief		自身のインスタンスを削除する唯一の手段
+	 */
+	static void DestroyInstance();
+
+#pragma endregion
 private:
-    Player* player; // プレイヤーの参照
 
     int Heart[5];
-
-
-public:     //コンストラクタとデストラクタ
-    UIManager(Player* _player);
-    ~UIManager();
-
 
 public:     //メンバ関数
     void Update();
@@ -23,7 +63,7 @@ public:     //メンバ関数
 
     void RenderUI();
 
-    void RenderHp(int _hp);
+    void RenderHp();
 
 };
 
