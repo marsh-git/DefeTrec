@@ -200,6 +200,12 @@ void Slime::Die() {
 	enemySpawner->EnemyDefeated();
 
 	charMng->RemoveCharacter(this);
+
+	// プレイヤーのスコアを更新
+	Player* player = CharacterManager::GetInstance()->GetPlayer();
+	if (player != nullptr) {
+		player->AddScore(1);
+	}
 }
 
 void Slime::Anim() {
