@@ -51,19 +51,22 @@ public:		//静的メンバ関数
 
 #pragma endregion
 
-public:
+public:			//メンバ変数
     int MapRand[MAP_HEIGHT][MAP_WIDTH];  // マップデータ
-    int playerX, playerY;  // プレイヤーの座標
+    //int playerX, playerY;  // プレイヤーの座標
 
-public:
-
+public:			//メンバ関数
     // 階層を進める処理
     void NextFloor(double wallRatio, double pathRatio, double enemyRatio);
 
+	//リセット
+	void Reset();
+
+public:			//GetterとSetter
     // 現在のマップデータを取得
     int (*GetMapData())[MAP_WIDTH];
 
     // プレイヤーの座標取得
-    int GetPlayerX() const { return playerX; }
-    int GetPlayerY() const { return playerY; }
+    //int GetPlayerX() const { return playerX; }
+    //int GetPlayerY() const { return playerY; }
 };

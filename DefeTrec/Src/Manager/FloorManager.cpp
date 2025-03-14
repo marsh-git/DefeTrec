@@ -7,8 +7,9 @@ FloorManager* FloorManager::pInstance = nullptr;
 
 //コンストラクタ
 FloorManager::FloorManager() 
-	: playerX(0)
-	, playerY(0) {
+	//: playerX(0)
+	//, playerY(0) 
+{
 	// 初期マップを設定
 	FloorManager::NextFloor(0.15, 0.8, 0.05);
 	//MapManager::generateRandomMap(MapRand, 0.15, 0.8, 0.05);
@@ -41,7 +42,10 @@ void FloorManager::NextFloor(double wallRatio, double pathRatio, double enemyRat
 	// 新しいマップをランダムに生成
 	MapManager::generateRandomMap(MapRand, wallRatio, pathRatio, enemyRatio);
 	eSpn->SpawnEnemy(MapRand); 
-	//MapRand[7][7] = 0;
+}
+
+void FloorManager::Reset() {
+	NextFloor(0.15, 0.8, 0.05);
 }
 
 int(*FloorManager::GetMapData())[MAP_WIDTH] {

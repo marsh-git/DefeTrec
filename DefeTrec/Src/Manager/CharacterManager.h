@@ -89,6 +89,8 @@ public:		//メンバ関数
 	//キャラクターの削除
 	void RemoveCharacter(Character* character);
 
+	void Reset();
+
 public:		//GetterとSetter
 	Slime* GetEnemyAtPosition(int tileX, int tileY);	//指定位置にいる敵の取得
 

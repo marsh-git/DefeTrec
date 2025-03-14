@@ -70,11 +70,15 @@ void Player::Render() {
 	default:
 		break;
 	}
-
+#if _DEBUG
 	DrawBox(targetX, targetY, targetX + TILE_SIZE, targetY + TILE_SIZE, white, false);
+#endif
 }
 
 void Player::Move(int _mapData[MAP_HEIGHT][MAP_WIDTH]) {
+	if (!isVisible)
+		return;
+
 	FloorManager* floorMng = FloorManager::GetInstance();  // FloorManager のインスタンスを生成
 	pTilePosX = targetX / TILE_SIZE;
 	pTilePosY = targetY / TILE_SIZE;

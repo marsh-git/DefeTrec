@@ -2,6 +2,7 @@
 #include "../Manager/InputManager.h"
 #include "../Manager/SceneManager.h"
 #include "../Manager/FadeManager.h"
+#include "../Scene/GameScene.h"
 #include <DxLib.h>
 
 ResultScene::ResultScene()
@@ -25,6 +26,8 @@ void ResultScene::Update() {
 	if (InputManager::GetInstance()->IsKeyDown(KEY_INPUT_SPACE)) {
 		FadeManager::GetInstance()->FadeIn();
 		//StopSoundFile();
+		GameScene gameScene;
+		gameScene.ResetScene();
 		SceneManager::GetInstance()->SetNext(SceneType::Game);
 	}
 
@@ -50,4 +53,8 @@ void ResultScene::Render() {
 
 	// ブレンドモードのリセット
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
+}
+
+void ResultScene::ResetScene() {
+	count = 0;
 }

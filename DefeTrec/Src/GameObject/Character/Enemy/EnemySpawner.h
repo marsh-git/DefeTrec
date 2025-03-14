@@ -68,5 +68,8 @@ public:		//メンバ関数
 	//敵を倒した時用の関数
 	void EnemyDefeated();
 
+	//リセット
+	void Reset();
+
 };
 

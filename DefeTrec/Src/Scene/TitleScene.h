@@ -33,5 +33,6 @@ public:			//ƒƒ“ƒoŠÖ”
 	 *  @brief		•`‰æˆ—
 	 */
 	void Render() override;
-};
 
+	void ResetScene() override;
+};

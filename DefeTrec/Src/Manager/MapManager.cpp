@@ -127,4 +127,3 @@ void MapManager::GeneratePortal(int _mapData[MAP_HEIGHT][MAP_WIDTH]) {
 	//	}
 	//}
 }
-

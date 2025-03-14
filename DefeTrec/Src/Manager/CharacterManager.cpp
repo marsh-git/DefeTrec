@@ -45,6 +45,15 @@ void CharacterManager::RemoveCharacter(Character* character) {
 	}
 }
 
+void CharacterManager::Reset() {
+	// キャラクター関連のリソースをリセット
+	for (auto enemy : enemies) {
+		delete enemy;
+	}
+	enemies.clear();
+	player = nullptr;
+}
+
 std::pair<int, int> CharacterManager::GetPlayerPosition() {
 
 	for (int y = 0; y < MAP_HEIGHT; ++y) {

@@ -19,5 +19,7 @@ public:
 
 	void Render() override;
 
+	void ResetScene() override;
+
 };
 

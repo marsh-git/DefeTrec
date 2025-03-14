@@ -33,7 +33,7 @@ public:			//ƒƒ“ƒoŠÖ”
 	 */
 	void Render() override;
 
-
+	void ResetScene() override;
 
 };
 

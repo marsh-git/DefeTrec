@@ -51,3 +51,7 @@ void TitleScene::Render() {
 	// ブレンドモードのリセット
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 }
+
+void TitleScene::ResetScene() {
+	count = 0;
+}

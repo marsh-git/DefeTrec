@@ -85,3 +85,26 @@ void GameScene::Render() {
 		enemy->Render();
 	}
 }
+
+void GameScene::ResetScene() {
+	// 既存のゲームオブジェクトを削除
+	for (auto pObj : pGameObjectArray) {
+		delete pObj;
+	}
+	pGameObjectArray.clear();
+
+	// プレイヤーを再初期化
+	//player = new Player(7 * TILE_SIZE, 7 * TILE_SIZE, 3, 1);
+	//pGameObjectArray.push_back(player);
+
+	// 他の必要なコンポーネントを再初期化
+	EnemySpawner::GetInstance()->Reset();
+
+	// マネージャーをリセット
+	CharacterManager::GetInstance()->Reset();
+	FloorManager::GetInstance()->Reset();
+
+	// シーンを再初期化
+	Start();
+
+}

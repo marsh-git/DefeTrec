@@ -42,5 +42,8 @@ public:		//メンバ関数
 	 */
 	virtual void Render() = 0;
 
+	//シーンのリセット用関数
+	virtual void ResetScene() = 0;
+
 public:		//GetterとSetter
 };

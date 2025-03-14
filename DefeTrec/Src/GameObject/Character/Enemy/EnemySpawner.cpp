@@ -63,3 +63,7 @@ void EnemySpawner::EnemyDefeated() {
         mapManager->GeneratePortal(mapData);
     }
 }
+
+void EnemySpawner::Reset() {
+    enemyNum = 0;
+}

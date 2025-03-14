@@ -138,6 +138,4 @@ public:		//ƒƒ“ƒoŠÖ”
 	static void generateRandomMap(int map[MAP_HEIGHT][MAP_WIDTH], double wallRatio, double pathRatio, double enemyRatio);
 
 	void GeneratePortal(int _mapData[MAP_HEIGHT][MAP_WIDTH]);
-
-
 };
