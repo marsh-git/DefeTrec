@@ -84,18 +84,25 @@ void GameScene::Render() {
 	for (Slime* enemy : CharacterManager::GetInstance()->enemies) {
 		enemy->Render();
 	}
+
+	// スコアと階数の表示
+	Player* player = CharacterManager::GetInstance()->GetPlayer();
+	if (player != nullptr) {
+		DrawFormatString(970, 50, black, "Score: %d", player->score);
+		DrawFormatString(970, 100, black, "Floor: %d", player->floorCount);
+	}
 }
 
 void GameScene::ResetScene() {
+	Player* player = CharacterManager::GetInstance()->GetPlayer();
+	if (player != nullptr)
+		player->Reset();
+
 	// 既存のゲームオブジェクトを削除
 	for (auto pObj : pGameObjectArray) {
 		delete pObj;
 	}
 	pGameObjectArray.clear();
-
-	// プレイヤーを再初期化
-	//player = new Player(7 * TILE_SIZE, 7 * TILE_SIZE, 3, 1);
-	//pGameObjectArray.push_back(player);
 
 	// 他の必要なコンポーネントを再初期化
 	EnemySpawner::GetInstance()->Reset();

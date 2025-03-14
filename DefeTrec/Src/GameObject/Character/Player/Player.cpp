@@ -19,8 +19,10 @@ Player::Player(int startX, int startY, int Hp, int startAttackPower)
 	LoadDivGraph("Res/Player/Swordsman_Atk.png", 9, 3, 3, 64, 64, pImage_Attack);
 	LoadDivGraph("Res/Player/Swordsman_Hit.png", 5, 3, 2, 64, 64, pImage_Hit);
 
-	//atkSE = LoadSoundMem("Res/Bgm/seAtk.ogg");
 	AudioManager::GetInstance()->Load("Res/Bgm/seAtk.ogg", "AtkSE");
+
+	score = 0;
+	floorCount = 1;
 }
 
 Player::~Player() {
@@ -50,8 +52,11 @@ void Player::Update() {
 }
 
 void Player::Render() {
-	if (!isVisible)
+	if (!isVisible) {
+		DrawFormatString(970, 200, black, "Space for Result");
+
 		return;
+	}
 	// 例: 四角形でキャラクターを描画
 	// プレイヤーの画像を描画する
 	switch (state) {
@@ -132,4 +137,17 @@ void Player::Move(int _mapData[MAP_HEIGHT][MAP_WIDTH]) {
 			}
 		}
 	}
+}
+
+void Player::Reset() {
+	score = 0;
+	floorCount = 1;
+}
+
+void Player::AddScore(int _points) {
+	score += _points;
+}
+
+void Player::AddFloor() {
+	floorCount++;
 }

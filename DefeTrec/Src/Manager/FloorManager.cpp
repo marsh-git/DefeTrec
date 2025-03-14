@@ -1,6 +1,7 @@
 #include "FloorManager.h"
 #include "MapManager.h"
 #include "../GameObject/Character/Enemy/EnemySpawner.h"
+#include "../GameObject/Character/Player/Player.h"
 
 //静的メンバ変数の初期化
 FloorManager* FloorManager::pInstance = nullptr;
@@ -42,6 +43,12 @@ void FloorManager::NextFloor(double wallRatio, double pathRatio, double enemyRat
 	// 新しいマップをランダムに生成
 	MapManager::generateRandomMap(MapRand, wallRatio, pathRatio, enemyRatio);
 	eSpn->SpawnEnemy(MapRand); 
+
+	// プレイヤーの階数を更新
+	Player* player = CharacterManager::GetInstance()->GetPlayer();
+	if (player != nullptr) {
+		player->AddFloor();
+	}
 }
 
 void FloorManager::Reset() {

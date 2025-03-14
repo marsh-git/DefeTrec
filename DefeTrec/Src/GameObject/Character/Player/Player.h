@@ -14,6 +14,10 @@ private:
 
 public:		//メンバ変数
 
+	//リザルトで使うためstaticで宣言
+	int score;			//倒した敵のスコア
+	int floorCount;		//階数
+
 
 public:		//コンストラクタ、デストラクタ
 	Player(int startX, int startY, int Hp, int startAttackPower);
@@ -27,6 +31,12 @@ public:		//メンバ関数
 	void Render();
 
 	void Move(int _mapData[MAP_HEIGHT][MAP_WIDTH]) override;
+
+	void Reset();
+
+	void AddScore(int _points);
+
+	void AddFloor();
 
 public:		//GetterとSetter
 
