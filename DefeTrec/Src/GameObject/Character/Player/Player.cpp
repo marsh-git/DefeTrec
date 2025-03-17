@@ -11,7 +11,9 @@ int pTilePosY;
 int moveCount = 0;
 
 Player::Player(int startX, int startY, int Hp, int startAttackPower, float startSpeed)
-	: Character(startX, startY, Hp, startAttackPower, startSpeed) {
+	: Character(startX, startY, Hp, startAttackPower, startSpeed)
+	, exp(0)
+	, level(1) {
 	CharacterManager::GetInstance()->SetPlayer(this);
 	// 画像を読み込む
 	LoadDivGraph("Res/Player/Swordsman_Idle.png", 7, 3, 3, 64, 64, pImage_Idle);
@@ -144,8 +146,26 @@ void Player::Reset() {
 
 void Player::AddScore(int _points) {
 	score += _points;
+	CheckLevel();
 }
 
 void Player::AddFloor() {
 	floorCount++;
+}
+
+void Player::CheckLevel() {
+	int scoreToNextLevel = level * 1; // 次のレベルに必要なスコア
+	if (score >= scoreToNextLevel) {
+		score -= scoreToNextLevel;
+		level++;
+		LevelUp();
+	}
+}
+
+void Player::LevelUp() {
+	maxHp += 1; // レベルアップ時に最大HPを増加
+	hp = maxHp; // HPを全回復
+	attackPower += 1; // 攻撃力を増加
+	speed -= 0.5;
+	// 他のステータスの向上もここに追加
 }

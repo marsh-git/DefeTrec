@@ -16,6 +16,9 @@ public:		//メンバ変数
 	int score;			//倒した敵のスコア
 	int floorCount;		//階数
 
+	int exp;			//経験値
+	int level;			//レベル
+
 
 public:		//コンストラクタ、デストラクタ
 	Player(int startX, int startY, int Hp, int startAttackPower, float startSpeed = 20.0f);
@@ -35,6 +38,10 @@ public:		//メンバ関数
 	void AddScore(int _points);
 
 	void AddFloor();
+
+	void CheckLevel();
+
+	void LevelUp();
 
 public:		//GetterとSetter
 

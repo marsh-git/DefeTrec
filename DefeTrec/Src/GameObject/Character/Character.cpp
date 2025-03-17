@@ -95,10 +95,10 @@ void Character::Anim() {
 
 bool Character::MovingAnim() {
 	if (state == WALK || state == WALK_LEFT || state == WALK_RIGHT) {
-		if (x < targetX) x += -speed + 22;
-		if (x > targetX) x -= -speed + 22;
-		if (y < targetY) y += -speed + 22;
-		if (y > targetY) y -= -speed + 22;
+		if (x < targetX) x += 2;
+		if (x > targetX) x -= 2;
+		if (y < targetY) y += 2;
+		if (y > targetY) y -= 2;
 
 		if (x - targetX == 0 && y - targetY == 0) {
 			x = targetX;
