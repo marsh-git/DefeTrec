@@ -10,9 +10,8 @@ int pTilePosX;
 int pTilePosY;
 int moveCount = 0;
 
-Player::Player(int startX, int startY, int Hp, int startAttackPower)
-	: Character(startX, startY, Hp, startAttackPower) 
-	, maxHp(Hp){
+Player::Player(int startX, int startY, int Hp, int startAttackPower, float startSpeed)
+	: Character(startX, startY, Hp, startAttackPower, startSpeed) {
 	CharacterManager::GetInstance()->SetPlayer(this);
 	// ‰æ‘œ‚ð“Ç‚Ýž‚Þ
 	LoadDivGraph("Res/Player/Swordsman_Idle.png", 7, 3, 3, 64, 64, pImage_Idle);
@@ -93,7 +92,7 @@ void Player::Move(int _mapData[MAP_HEIGHT][MAP_WIDTH]) {
 	moveCount++;
 
 	// WASDƒL[‚ÅˆÚ“®
-	if (moveCount >= 20 && state != WALK) {
+	if (moveCount >= speed && state != WALK) {
 		int newTilePosX = pTilePosX;
 		int newTilePosY = pTilePosY;
 

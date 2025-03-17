@@ -32,6 +32,7 @@ enum State {
 };
 	int attackPower; // 攻撃力
 	int hp;
+	int maxHp;
 
 	State state;
 
@@ -42,9 +43,10 @@ enum State {
 	int currentFrame;
 	int frameCounter;
 	int frameDelay;
+	int animSpeed = 2;
 
 public:		//コンストラクタ、デストラクタ
-	Character(int startX, int startY, int Hp, int startAttackPower);
+	Character(int startX, int startY, int Hp, int startAttackPower, float startSpeed = 2.0f);
 	virtual ~Character() = 0;
 
 public:		//メンバ関数

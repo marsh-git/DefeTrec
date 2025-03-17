@@ -33,7 +33,7 @@ void GameScene::Start() {
 	CharacterManager* charMng = CharacterManager::GetInstance();
 
 	// プレイヤーの初期化 X,Y,hp,攻撃力, 表示
-	player = new Player(7 * TILE_SIZE, 7 * TILE_SIZE, 3, 1);
+	player = new Player(7 * TILE_SIZE, 7 * TILE_SIZE, 3, 1, 20.0f);
 	pGameObjectArray.push_back(player);
 
 }

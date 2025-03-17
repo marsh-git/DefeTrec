@@ -16,11 +16,9 @@ public:		//メンバ変数
 	int score;			//倒した敵のスコア
 	int floorCount;		//階数
 
-	int maxHp;
-
 
 public:		//コンストラクタ、デストラクタ
-	Player(int startX, int startY, int Hp, int startAttackPower);
+	Player(int startX, int startY, int Hp, int startAttackPower, float startSpeed = 20.0f);
 	~Player();
 
 public:		//メンバ関数

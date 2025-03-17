@@ -3,17 +3,18 @@
 #include "../Src/Manager/CharacterManager.h"
 #include "../Src/Manager/MapManager.h"
 
-Character::Character(int startX, int startY, int Hp, int startAttackPower)
+Character::Character(int startX, int startY, int Hp, int startAttackPower, float startSpeed)
 	: GameObject(startX, startY, "Character")
 	, hp(Hp)
 	, attackPower(startAttackPower)
 	, state(IDLE)
-	, speed(2.0f)
+	, speed(startSpeed)
 	, targetX(startX)
 	, targetY(startY)
 	, currentFrame(0)
 	, frameCounter(0)
-	, frameDelay(5) {
+	, frameDelay(5)
+	, maxHp(Hp) {
 	x = startX;
 	y = startY;
 }
@@ -94,10 +95,10 @@ void Character::Anim() {
 
 bool Character::MovingAnim() {
 	if (state == WALK || state == WALK_LEFT || state == WALK_RIGHT) {
-		if (x < targetX) x += speed;
-		if (x > targetX) x -= speed;
-		if (y < targetY) y += speed;
-		if (y > targetY) y -= speed;
+		if (x < targetX) x += animSpeed;
+		if (x > targetX) x -= animSpeed;
+		if (y < targetY) y += animSpeed;
+		if (y > targetY) y -= animSpeed;
 
 		if (x - targetX == 0 && y - targetY == 0) {
 			x = targetX;
