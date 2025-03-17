@@ -30,8 +30,9 @@ void Slime::Start() {
 
 void Slime::Update() {
 	//不可視なら処理を飛ばす
-	if (!isVisible)
+	if (!isVisible) {
 		return;
+	}
 	//移動時のアニメーション
 	MovingAnim();
 	//アニメーション
@@ -200,6 +201,8 @@ void Slime::Die() {
 	enemySpawner->EnemyDefeated();
 
 	charMng->RemoveCharacter(this);
+
+	currentFrame = 0;
 
 	// プレイヤーのスコアを更新
 	Player* player = CharacterManager::GetInstance()->GetPlayer();

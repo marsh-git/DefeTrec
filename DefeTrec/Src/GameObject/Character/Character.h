@@ -43,7 +43,7 @@ enum State {
 	int currentFrame;
 	int frameCounter;
 	int frameDelay;
-	int animSpeed = 2;
+	//int animSpeed = 2;
 
 public:		//コンストラクタ、デストラクタ
 	Character(int startX, int startY, int Hp, int startAttackPower, float startSpeed = 2.0f);

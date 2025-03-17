@@ -7,6 +7,7 @@
 #include "../Manager/SceneManager.h"
 #include "../Manager/FloorManager.h"
 #include "../Manager/UIManager.h"
+#include "../Manager/EffectManager.h"
 #include "../Src/GameObject/Character/Enemy/EnemySpawner.h"
 
 GameScene::GameScene() {
@@ -53,6 +54,7 @@ void GameScene::Update() {
 
 	// マップの更新
 	MapManager::GetInstance()->Update();
+	EffectManager::GetInstance()->Update();
 
 	// 配列の要素をすべて更新
 	for (auto pGameObject : pGameObjectArray) {
@@ -75,6 +77,9 @@ void GameScene::Render() {
 
 	// マップの描画
 	MapManager::GetInstance()->Render(FloorManager::GetInstance()->MapRand);
+
+	//エフェクト
+	EffectManager::GetInstance()->Render();
 
 	// 配列の要素をすべて描画
 	for (auto pGameObject : pGameObjectArray) {

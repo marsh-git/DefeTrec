@@ -1,4 +1,5 @@
 #include "CharacterManager.h"
+#include "EffectManager.h"
 
 //Ã“Iƒƒ“ƒo•Ï”‚Ì‰Šú‰»
 CharacterManager* CharacterManager::pInstance = nullptr;
@@ -36,6 +37,8 @@ void CharacterManager::AddEnemy(Slime* enemy) {
 }
 
 void CharacterManager::RemoveCharacter(Character* character) {
+	EffectManager::GetInstance()->WhenDied(character->x, character->y);
+
 	if (character == player) {
 		player->isVisible = false;
 	}
