@@ -13,10 +13,10 @@ private:
 	int pImage_Hit[5];
 
 public:		//メンバ変数
-
-	//リザルトで使うためstaticで宣言
 	int score;			//倒した敵のスコア
 	int floorCount;		//階数
+
+	int maxHp;
 
 
 public:		//コンストラクタ、デストラクタ
@@ -41,6 +41,7 @@ public:		//メンバ関数
 public:		//GetterとSetter
 
 	inline int GetHp() { return hp; };
+	inline int GetMaxHp() { return maxHp; };
 
 
 };

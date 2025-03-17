@@ -52,9 +52,16 @@ public:		//静的メンバ関数
 	static void DestroyInstance();
 
 #pragma endregion
-private:
+private:		//画像読み込み
 
-    int Heart[5];
+    int HpBarSide;
+    int HpBarMid;
+
+private:		//メンバ関数
+	int Font75;
+	int Font40;
+	int Font50;
+
 
 public:     //メンバ関数
     void Update();

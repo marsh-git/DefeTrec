@@ -11,7 +11,8 @@ int pTilePosY;
 int moveCount = 0;
 
 Player::Player(int startX, int startY, int Hp, int startAttackPower)
-	: Character(startX, startY, Hp, startAttackPower) {
+	: Character(startX, startY, Hp, startAttackPower) 
+	, maxHp(Hp){
 	CharacterManager::GetInstance()->SetPlayer(this);
 	// 画像を読み込む
 	LoadDivGraph("Res/Player/Swordsman_Idle.png", 7, 3, 3, 64, 64, pImage_Idle);
@@ -53,8 +54,6 @@ void Player::Update() {
 
 void Player::Render() {
 	if (!isVisible) {
-		DrawFormatString(970, 200, black, "Space for Result");
-
 		return;
 	}
 	// 例: 四角形でキャラクターを描画
