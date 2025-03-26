@@ -21,10 +21,14 @@ Player::Player(int startX, int startY, int Hp, int startAttackPower, float start
 	LoadDivGraph("Res/Player/Swordsman_Atk.png", 9, 3, 3, 64, 64, pImage_Attack);
 	LoadDivGraph("Res/Player/Swordsman_Hit.png", 5, 3, 2, 64, 64, pImage_Hit);
 
-	AudioManager::GetInstance()->Load("Res/Bgm/seAtk.ogg", "AtkSE");
+	se = LoadSoundMem("Res/Bgm/seAtk.ogg");
+	ChangeVolumeSoundMem(255 * 20 / 100, se);
+
+	levelupSe = LoadSoundMem("Res/Bgm/levelUp.mp3");
+	ChangeVolumeSoundMem(255 * 20 / 100, levelupSe);
 
 	score = 0;
-	floorCount = 1;
+	floorCount = 0;
 }
 
 Player::~Player() {
@@ -51,6 +55,10 @@ void Player::Update() {
 		return;
 	MovingAnim();
 	Anim();
+
+
+	if (floorCount == 0)
+		floorCount = 1;
 }
 
 void Player::Render() {
@@ -129,7 +137,7 @@ void Player::Move(int _mapData[MAP_HEIGHT][MAP_WIDTH]) {
 				else {
 					Attack(enemy);
 					//攻撃時に音声を流す
-					AudioManager::GetInstance()->PlayOneShot("AtkSE");
+					PlaySoundMem(se, DX_PLAYTYPE_BACK, TRUE);
 				}
 			}
 			else if (_mapData[newTilePosY][newTilePosX] == 8) {
@@ -163,9 +171,17 @@ void Player::CheckLevel() {
 }
 
 void Player::LevelUp() {
+	PlaySoundMem(levelupSe, DX_PLAYTYPE_BACK, TRUE);
 	//maxHp += 1; // レベルアップ時に最大HPを増加
 	//hp = maxHp; // HPを全回復
-	//attackPower += 1; // 攻撃力を増加
+	attackPower += 1; // 攻撃力を増加
 	//speed -= 0.5;
 	// 他のステータスの向上もここに追加
+}
+
+void Player::Attack(Character* character) {
+	if (character != nullptr) {
+		state = ATTACK;
+		character->TakeDamage(attackPower);
+	}
 }

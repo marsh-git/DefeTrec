@@ -1,7 +1,10 @@
 #include "FloorManager.h"
 #include "MapManager.h"
+#include "SceneManager.h"
+#include "../Scene/ResultScene.h"
 #include "../GameObject/Character/Enemy/EnemySpawner.h"
 #include "../GameObject/Character/Player/Player.h"
+
 
 //静的メンバ変数の初期化
 FloorManager* FloorManager::pInstance = nullptr;
@@ -12,8 +15,7 @@ FloorManager::FloorManager()
 	//, playerY(0) 
 {
 	// 初期マップを設定
-	FloorManager::NextFloor(0.15, 0.8, 0.05);
-	//MapManager::generateRandomMap(MapRand, 0.15, 0.8, 0.05);
+	Start();
 }
 
 //シングルトンのインスタンス作成
@@ -38,14 +40,27 @@ void FloorManager::DestroyInstance() {
 }
 
 
+void FloorManager::Start() {
+	FloorManager::NextFloor(0.15, 0.8, 0.05);
+}
+
 void FloorManager::NextFloor(double wallRatio, double pathRatio, double enemyRatio) {
+	// プレイヤーの取得
+	Player* player = CharacterManager::GetInstance()->GetPlayer();
+	if (player->floorCount >= 1) {;
+		ResultScene::gameClear = true;
+		FadeManager::GetInstance()->FadeIn();
+		SceneManager::GetInstance()->SetNext(SceneType::Result);
+		return;
+	}
+
+
 	EnemySpawner* eSpn = EnemySpawner::GetInstance();
 	// 新しいマップをランダムに生成
 	MapManager::generateRandomMap(MapRand, wallRatio, pathRatio, enemyRatio);
 	eSpn->SpawnEnemy(MapRand); 
 
-	// プレイヤーの階数を更新
-	Player* player = CharacterManager::GetInstance()->GetPlayer();
+	//プレイヤーのフロアを更新
 	if (player != nullptr) {
 		player->AddFloor();
 	}

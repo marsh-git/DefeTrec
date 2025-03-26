@@ -18,7 +18,9 @@ public:		//メンバ変数
 
 	int exp;			//経験値
 	int level;			//レベル
-
+	
+	int se;
+	int levelupSe;
 
 public:		//コンストラクタ、デストラクタ
 	Player(int startX, int startY, int Hp, int startAttackPower, float startSpeed = 20.0f);
@@ -42,6 +44,8 @@ public:		//メンバ関数
 	void CheckLevel();
 
 	void LevelUp();
+
+	void Attack(Character* character) override;
 
 public:		//GetterとSetter
 

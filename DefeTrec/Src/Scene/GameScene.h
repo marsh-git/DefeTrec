@@ -7,7 +7,7 @@
 class GameScene : public BaseScene {
 protected:
 	Player* player;
-
+	int bgm;
 public:
 	GameScene();
 	~GameScene();

@@ -56,6 +56,9 @@ public:			//メンバ変数
     //int playerX, playerY;  // プレイヤーの座標
 
 public:			//メンバ関数
+
+	void Start();
+
     // 階層を進める処理
     void NextFloor(double wallRatio, double pathRatio, double enemyRatio);
 

@@ -14,6 +14,7 @@ protected:		//ƒƒ“ƒo•Ï”
 	int count;
 	int num = 0;
 
+	int bgm;
 
 public:			//ƒƒ“ƒoŠÖ”
 	/*

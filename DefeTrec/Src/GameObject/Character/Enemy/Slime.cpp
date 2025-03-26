@@ -13,10 +13,7 @@ AStar pathfinder;
 Slime::Slime(int startX, int startY, int Hp, int startAttackPower)
 	: Character(startX, startY, Hp, startAttackPower)
 	, count(0) {
-	LoadDivGraph("Res/Enemy/slime.png", 21, 8, 3, 64, 64, Slime_png);
-	frameDelay = 10;
-	state = IDLE_LEFT;
-	speed = 4.0f;
+	Start();
 }
 
 Slime::~Slime() {
@@ -26,6 +23,10 @@ Slime::~Slime() {
 }
 
 void Slime::Start() {
+	LoadDivGraph("Res/Enemy/slime.png", 21, 8, 3, 64, 64, Slime_png);
+	frameDelay = 10;
+	state = IDLE_LEFT;
+	speed = 4.0f;
 }
 
 void Slime::Update() {
@@ -162,17 +163,6 @@ void Slime::Move(int _mapData[MAP_HEIGHT][MAP_WIDTH]) {
 			}
 		}
 	}
-}
-
-void Slime::Attack(Character* player) {
-	if (player != nullptr) {
-		if (x >= player->x)
-			state = ATTACK_LEFT;
-		if (x <= player->x)
-			state = ATTACK_RIGHT;
-		player->TakeDamage(attackPower);
-	}
-
 }
 
 void Slime::TakeDamage(int damage) {

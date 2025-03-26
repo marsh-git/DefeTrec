@@ -63,6 +63,10 @@ void UIManager::RenderUI() {
 		DrawFormatStringToHandle(970, 350, black, Font40, "Floor: %d", player->floorCount);
 		DrawFormatStringToHandle(970, 400, black, Font40, "Score: %d", player->score);
 	}
+
+	DrawFormatStringToHandle(970, 500, black, Font40, "WALK : WASD");
+	DrawFormatStringToHandle(970, 550, black, Font40, "ATTACK : WASD");
+	DrawFormatStringToHandle(970, 600, black, Font40, "SELECT : SPACE");
 }
 
 void UIManager::RenderHp() {

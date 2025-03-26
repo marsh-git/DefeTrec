@@ -14,6 +14,11 @@ protected:		//ƒƒ“ƒo•Ï”
 	int count;
 	int num = 0;
 
+	int bgm;
+
+public:
+	static bool gameClear;
+
 public:			//ƒƒ“ƒoŠÖ”
 	/*
 	 *	@function	Start

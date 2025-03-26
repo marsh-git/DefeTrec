@@ -11,17 +11,27 @@
 #include "../Src/GameObject/Character/Enemy/EnemySpawner.h"
 
 GameScene::GameScene() {
+	bgm = LoadSoundMem("Res/Bgm/GameScene.ogg");
+	ChangeVolumeSoundMem(255 * 20 / 100, bgm);
+	if (CheckSoundMem(bgm) == false)
+		PlaySoundMem(bgm, DX_PLAYTYPE_LOOP, TRUE);
 	Start();
 }
 
 GameScene::~GameScene() {
 	// リソースの解放やクリーンアップ処理をここに追加
 	delete player;
+	DeleteSoundMem(bgm);
 }
 
 void GameScene::Start() {
-	PlaySoundFile("Res/Bgm/GameScene.ogg", DX_PLAYTYPE_LOOP);
+	
+
 	//モデルや画像の読み込み
+ 
+	// プレイヤーの初期化 X,Y,hp,攻撃力, 表示
+	player = new Player(7 * TILE_SIZE, 7 * TILE_SIZE, 3, 1, 20.0f);
+	pGameObjectArray.push_back(player);
 
 	//各種インスタンス化
 	// マップ生成スクリプトの初期化
@@ -33,16 +43,13 @@ void GameScene::Start() {
 	// キャラクターマネージャーの初期化
 	CharacterManager* charMng = CharacterManager::GetInstance();
 
-	// プレイヤーの初期化 X,Y,hp,攻撃力, 表示
-	player = new Player(7 * TILE_SIZE, 7 * TILE_SIZE, 3, 1, 20.0f);
-	pGameObjectArray.push_back(player);
-
 }
 
 void GameScene::Update() {
 	if (player->hp <= 0 && InputManager::GetInstance()->IsKeyDown(KEY_INPUT_SPACE)) {
 		FadeManager::GetInstance()->FadeIn();
 		SceneManager::GetInstance()->SetNext(SceneType::Result);
+		StopSoundMem(bgm);
 	}
 
 	//範囲for文	配列やコンテナの要素全てを繰り返す
@@ -111,9 +118,9 @@ void GameScene::ResetScene() {
 
 	// マネージャーをリセット
 	CharacterManager::GetInstance()->Reset();
-	FloorManager::GetInstance()->Reset();
 
 	// シーンを再初期化
 	Start();
 
+	FloorManager::GetInstance()->Reset();
 }

@@ -31,7 +31,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	ChangeWindowMode(true);		//真→Windowモード、偽→Fullスクリーン
 	//背景色
 	SetBackgroundColor(196, 196, 196);
-
+	SetWindowIconID(333);
+	SetWindowText("DefeTrec");
 	//DxLibの初期化
 	if (DxLib_Init() == -1) {
 		return 0;
@@ -62,6 +63,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	//FPS調整用
 	int time;
 
+	
 	//=================================================
 	//	ゲームのメインループ
 	//=================================================

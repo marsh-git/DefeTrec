@@ -36,7 +36,10 @@ void Character::Render() {
 
 void Character::Attack(Character* character) {
 	if (character != nullptr) {
-		state = ATTACK;
+		if (x >= character->x)
+			state = ATTACK_LEFT;
+		if (x <= character->x)
+			state = ATTACK_RIGHT;
 		character->TakeDamage(attackPower);
 	}
 }

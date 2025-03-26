@@ -14,18 +14,22 @@ TitleScene::TitleScene()
 TitleScene::~TitleScene() {
 	DeleteFontToHandle(TitleFont);
 	DeleteFontToHandle(DefFont);
+	DeleteSoundMem(bgm);
 }
 
 void TitleScene::Start() {
 	TitleFont = CreateFontToHandle("Magneto", 250, 5);
 	DefFont = CreateFontToHandle("Magneto", 100, 5);
-	PlaySoundFile("Res/Bgm/Title_Candy.ogg", DX_PLAYTYPE_LOOP);
+	bgm = LoadSoundMem("Res/Bgm/Title_Candy.ogg");
+	ChangeVolumeSoundMem(255 * 20 / 100, bgm);
+	PlaySoundMem(bgm, DX_PLAYTYPE_LOOP, TRUE);
 }
 
 void TitleScene::Update() {
 	if (InputManager::GetInstance()->IsKeyDown(KEY_INPUT_SPACE)) {
 		FadeManager::GetInstance()->FadeIn();
 		SceneManager::GetInstance()->SetNext(SceneType::Game);
+		DeleteSoundMem(bgm);
 	}
 
 	//0以下の時は増やす		255以上の時は減らす
@@ -47,6 +51,8 @@ void TitleScene::Render() {
 
 	//スタート
 	DrawStringToHandle(300, 700, "Space to Start", black, DefFont);
+
+	DrawStringToHandle(375, 800, "ESC to End", black, DefFont);
 
 	// ブレンドモードのリセット
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);

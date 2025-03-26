@@ -23,8 +23,6 @@ public:		//ƒƒ“ƒoŠÖ”
 	void Render() override;
 	//ˆÚ“®
 	void Move(int _mapData[MAP_HEIGHT][MAP_WIDTH]) override;
-	//UŒ‚
-	void Attack(Character* player) override;
 	//”í’e
 	void TakeDamage(int damage) override;
 	//€–S
