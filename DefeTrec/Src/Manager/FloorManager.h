@@ -55,6 +55,8 @@ public:			//メンバ変数
     int MapRand[MAP_HEIGHT][MAP_WIDTH];  // マップデータ
     //int playerX, playerY;  // プレイヤーの座標
 
+	static bool clear;
+
 public:			//メンバ関数
 
 	void Start();

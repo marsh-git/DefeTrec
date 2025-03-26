@@ -2,11 +2,10 @@
 #include "../Manager/InputManager.h"
 #include "../Manager/SceneManager.h"
 #include "../Manager/FadeManager.h"
+#include "../Manager/FloorManager.h"
 #include "../Manager/CharacterManager.h"
 #include "../Scene/GameScene.h"
 #include <DxLib.h>
-
-bool ResultScene::gameClear = false;
 
 ResultScene::ResultScene()
 	:ResultFont(NULL)
@@ -19,7 +18,6 @@ ResultScene::ResultScene()
 ResultScene::~ResultScene() {
 	DeleteFontToHandle(ResultFont);
 	DeleteFontToHandle(DefFont);
-	gameClear = false;
 	DeleteSoundMem(bgm);
 }
 
@@ -52,7 +50,7 @@ void ResultScene::Update() {
 void ResultScene::Render() {
 
 	Player* player = CharacterManager::GetInstance()->GetPlayer();
-	if (gameClear) {
+	if (FloorManager::clear) {
 		DrawStringToHandle(125, 200, "GameClear!", black, ResultFont);
 	}
 	else {
@@ -62,7 +60,7 @@ void ResultScene::Render() {
 	// •`‰æF‚Æ“§–¾“x‚Ìİ’è		‚±‚ÌŠÔ‚É‚Í‚³‚ñ‚¾‚Ì‚Í“§–¾“x‚ğ•Ï‰»‚³‚¹‚ç‚ê‚é
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, count); 
 
-	if (gameClear){
+	if (FloorManager::clear){
 		DrawStringToHandle(300, 700, "Space to Restart", black, DefFont);
 	}
 	else {

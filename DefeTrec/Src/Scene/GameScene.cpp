@@ -20,7 +20,7 @@ GameScene::GameScene() {
 
 GameScene::~GameScene() {
 	// リソースの解放やクリーンアップ処理をここに追加
-	delete player;
+	//delete player;
 	DeleteSoundMem(bgm);
 }
 
@@ -46,35 +46,45 @@ void GameScene::Start() {
 }
 
 void GameScene::Update() {
-	if (player->hp <= 0 && InputManager::GetInstance()->IsKeyDown(KEY_INPUT_SPACE)) {
-		FadeManager::GetInstance()->FadeIn();
-		SceneManager::GetInstance()->SetNext(SceneType::Result);
-		StopSoundMem(bgm);
-	}
 
 	//範囲for文	配列やコンテナの要素全てを繰り返す
 	//for(1つの型 別名：配列、コンテナ){ 処理 }
 	//auto型 型推論 -> 右辺の値から型を作ってくれる。
-	for (auto pGameObject : pGameObjectArray) {
-		pGameObject->Update();
-	}
 
 	// マップの更新
 	MapManager::GetInstance()->Update();
 	EffectManager::GetInstance()->Update();
 
 	// 配列の要素をすべて更新
-	for (auto pGameObject : pGameObjectArray) {
-		pGameObject->Update();
+	//for (auto pGameObject : pGameObjectArray) {
+	//	pGameObject->Update();
+	//}
+	if (player->isVisible == true) {
+		player->Update();
+		// プレイヤーの移動
+		player->Move(FloorManager::GetInstance()->MapRand);
 	}
 
-	// プレイヤーの移動
-	player->Move(FloorManager::GetInstance()->MapRand);
 
 	// 敵の更新
 	for (Slime* enemy : CharacterManager::GetInstance()->enemies) {
 		enemy->Update();
 		enemy->Move(FloorManager::GetInstance()->MapRand);
+	}
+
+	if (player->hp <= 0 && InputManager::GetInstance()->IsKeyDown(KEY_INPUT_SPACE)) {
+		FadeManager::GetInstance()->FadeIn();
+		SceneManager::GetInstance()->SetNext(SceneType::Result);
+		StopSoundMem(bgm);
+	}
+
+	if (FloorManager::GetInstance()->clear == true) {
+		player->x = -64;
+		player->y = -64;
+		player->Die();
+		FadeManager::GetInstance()->FadeIn();
+		SceneManager::GetInstance()->SetNext(SceneType::Result);
+		StopSoundMem(bgm);
 	}
 }
 
@@ -89,8 +99,12 @@ void GameScene::Render() {
 	EffectManager::GetInstance()->Render();
 
 	// 配列の要素をすべて描画
-	for (auto pGameObject : pGameObjectArray) {
+	/*for (auto pGameObject : pGameObjectArray) {
 		pGameObject->Render();
+	}*/
+
+	if (player->isVisible == true) {
+		player->Render();
 	}
 
 	// 敵キャラクターの描画

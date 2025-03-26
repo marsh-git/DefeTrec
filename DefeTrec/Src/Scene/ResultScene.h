@@ -16,9 +16,6 @@ protected:		//ƒƒ“ƒo•Ï”
 
 	int bgm;
 
-public:
-	static bool gameClear;
-
 public:			//ƒƒ“ƒoŠÖ”
 	/*
 	 *	@function	Start

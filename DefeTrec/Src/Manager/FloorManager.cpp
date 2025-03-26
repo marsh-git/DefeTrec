@@ -9,6 +9,8 @@
 //静的メンバ変数の初期化
 FloorManager* FloorManager::pInstance = nullptr;
 
+bool FloorManager::clear = false;
+
 //コンストラクタ
 FloorManager::FloorManager() 
 	//: playerX(0)
@@ -48,9 +50,7 @@ void FloorManager::NextFloor(double wallRatio, double pathRatio, double enemyRat
 	// プレイヤーの取得
 	Player* player = CharacterManager::GetInstance()->GetPlayer();
 	if (player->floorCount >= 1) {;
-		ResultScene::gameClear = true;
-		FadeManager::GetInstance()->FadeIn();
-		SceneManager::GetInstance()->SetNext(SceneType::Result);
+		clear = true;
 		return;
 	}
 
@@ -68,6 +68,7 @@ void FloorManager::NextFloor(double wallRatio, double pathRatio, double enemyRat
 
 void FloorManager::Reset() {
 	NextFloor(0.15, 0.8, 0.05);
+	clear = false;
 }
 
 int(*FloorManager::GetMapData())[MAP_WIDTH] {

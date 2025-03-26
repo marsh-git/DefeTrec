@@ -41,6 +41,7 @@ void CharacterManager::RemoveCharacter(Character* character) {
 
 	if (character == player) {
 		player->isVisible = false;
+		delete player;
 	}
 	else {
 		enemies.erase(std::remove(enemies.begin(), enemies.end(), character), enemies.end());
