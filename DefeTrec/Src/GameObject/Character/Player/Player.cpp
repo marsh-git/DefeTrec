@@ -154,7 +154,7 @@ void Player::AddFloor() {
 }
 
 void Player::CheckLevel() {
-	int scoreToNextLevel = level * 1; // 次のレベルに必要なスコア
+	float scoreToNextLevel = level * 1.2f; // 次のレベルに必要なスコア
 	if (score >= scoreToNextLevel) {
 		score -= scoreToNextLevel;
 		level++;
@@ -163,9 +163,9 @@ void Player::CheckLevel() {
 }
 
 void Player::LevelUp() {
-	maxHp += 1; // レベルアップ時に最大HPを増加
-	hp = maxHp; // HPを全回復
-	attackPower += 1; // 攻撃力を増加
-	speed -= 0.5;
+	//maxHp += 1; // レベルアップ時に最大HPを増加
+	//hp = maxHp; // HPを全回復
+	//attackPower += 1; // 攻撃力を増加
+	//speed -= 0.5;
 	// 他のステータスの向上もここに追加
 }

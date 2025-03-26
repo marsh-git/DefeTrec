@@ -56,11 +56,12 @@ void UIManager::RenderUI() {
 	// スコアと階数の表示
 	Player* player = CharacterManager::GetInstance()->GetPlayer();
 	if (player != nullptr) {
-		DrawFormatStringToHandle(970, 150, black, Font40, "Hp: %d", player->GetMaxHp());
-		DrawFormatStringToHandle(970, 200, black, Font40, "Speed: %.2f", -player->speed + 21.0f);
-		DrawFormatStringToHandle(970, 250, black, Font40, "Power: %d", player->attackPower);
-		DrawFormatStringToHandle(970, 300, black, Font40, "Floor: %d", player->floorCount);
-		DrawFormatStringToHandle(970, 350, black, Font40, "Score: %d", player->score);
+		DrawFormatStringToHandle(970, 150, black, Font40, "Level: %d", player->level);
+		DrawFormatStringToHandle(970, 200, black, Font40, "Hp: %d", player->GetMaxHp());
+		DrawFormatStringToHandle(970, 250, black, Font40, "Speed: %.2f", -player->speed + 21.0f);
+		DrawFormatStringToHandle(970, 300, black, Font40, "Power: %d", player->attackPower);
+		DrawFormatStringToHandle(970, 350, black, Font40, "Floor: %d", player->floorCount);
+		DrawFormatStringToHandle(970, 400, black, Font40, "Score: %d", player->score);
 	}
 }
 
