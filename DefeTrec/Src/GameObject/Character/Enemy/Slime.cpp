@@ -261,6 +261,8 @@ void Slime::Anim() {
 bool Slime::MovingAnim() {
 	if (state == WALK || state == WALK_LEFT || state == WALK_RIGHT) {
 		Player* player = CharacterManager::GetInstance()->GetPlayer();
+		if (player == nullptr)
+			return true;
 
 		if (x < targetX) x += speed;
 		if (x > targetX) x -= speed;

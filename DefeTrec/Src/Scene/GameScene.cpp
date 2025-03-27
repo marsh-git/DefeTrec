@@ -54,6 +54,7 @@ void GameScene::Update() {
 	// マップの更新
 	MapManager::GetInstance()->Update();
 	EffectManager::GetInstance()->Update();
+	UIManager::GetInstance()->Update();
 
 	// 配列の要素をすべて更新
 	//for (auto pGameObject : pGameObjectArray) {
@@ -79,8 +80,8 @@ void GameScene::Update() {
 	}
 
 	if (FloorManager::GetInstance()->clear == true) {
-		player->x = -64;
-		player->y = -64;
+		//player->x = -64;
+		//player->y = -64;
 		player->Die();
 		FadeManager::GetInstance()->FadeIn();
 		SceneManager::GetInstance()->SetNext(SceneType::Result);

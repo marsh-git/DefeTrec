@@ -62,6 +62,13 @@ private:		//ƒƒ“ƒoŠÖ”
 	int Font40;
 	int Font50;
 
+	int pLevel;
+	int Hp;
+	float pSpeed;
+	int pPower;
+	int Floor;
+	int Score;
+
 
 public:     //ƒƒ“ƒoŠÖ”
     void Update();

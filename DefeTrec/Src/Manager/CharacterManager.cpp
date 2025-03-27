@@ -37,13 +37,15 @@ void CharacterManager::AddEnemy(Slime* enemy) {
 }
 
 void CharacterManager::RemoveCharacter(Character* character) {
-	EffectManager::GetInstance()->WhenDied(character->x, character->y);
 
 	if (character == player) {
 		player->isVisible = false;
+
 		delete player;
+		player = nullptr;
 	}
 	else {
+		EffectManager::GetInstance()->WhenDied(character->x, character->y);
 		enemies.erase(std::remove(enemies.begin(), enemies.end(), character), enemies.end());
 		delete character; // ƒƒ‚ƒŠ‚ğ‰ğ•ú
 	}
