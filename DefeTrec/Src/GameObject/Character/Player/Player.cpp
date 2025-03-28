@@ -126,6 +126,7 @@ void Player::Move(int _mapData[MAP_HEIGHT][MAP_WIDTH]) {
 		moveCount = 0;
 
 		if (newTilePosX >= 0 && newTilePosX < MAP_WIDTH && newTilePosY >= 0 && newTilePosY < MAP_HEIGHT) {
+			//•Ç‚ª‚ ‚é‚©‚È‚¢‚©‚Ì”»•Ê
 			if (_mapData[newTilePosY][newTilePosX] == 0) {
 				Slime* enemy = charMng->GetEnemyAtPosition(newTilePosX, newTilePosY);
 				if (enemy == nullptr) {

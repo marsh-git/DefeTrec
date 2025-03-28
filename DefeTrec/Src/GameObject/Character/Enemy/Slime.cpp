@@ -105,6 +105,8 @@ void Slime::Move(int _mapData[MAP_HEIGHT][MAP_WIDTH]) {
 
 	Player* player = cMng->GetPlayer();
 
+	if (player == nullptr)
+		return;
 
 	if (pTilePosX != -1 && pTilePosY != -1 && count >= 90) { // ƒvƒŒƒCƒ„[‚ªŒ©‚Â‚©‚Á‚½ê‡
 		count = 0;
@@ -151,8 +153,7 @@ void Slime::Move(int _mapData[MAP_HEIGHT][MAP_WIDTH]) {
 				if (_mapData[eTilePosY][eTilePosX - 1] == 0 && cMng->CharacterData[eTilePosY][eTilePosX - 1] == 0) {
 					cMng->CharacterData[eTilePosY][eTilePosX] = 0;
 					targetX = x - TILE_SIZE;
-					state = WALK_LEFT;
-				}
+					state = WALK_LEFT;				}
 			}
 			if (MoveDir == 3 && eTilePosX < MAP_HEIGHT - 1) {
 				if (_mapData[eTilePosY][eTilePosX + 1] == 0 && cMng->CharacterData[eTilePosY][eTilePosX + 1] == 0) {
